@@ -52,6 +52,7 @@ end
 group :test do
   gem 'cucumber-rails', '~> 1.4', '>= 1.4.3', require: false
   gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
+  gem 'factory_girl', '~> 4.5'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
