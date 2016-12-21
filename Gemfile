@@ -57,6 +57,7 @@ group :test do
   gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
   gem 'factory_girl', '~> 4.5'
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
+  gem 'selenium-webdriver'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

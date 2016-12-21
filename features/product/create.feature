@@ -1,3 +1,4 @@
+@javascript
 Feature: Create a product
 As a SoleDistributor
 I want to store a product in the app
