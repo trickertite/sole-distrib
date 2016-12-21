@@ -41,4 +41,5 @@ guard "cucumber", cucumber_options do
 
   watch(%r{^app/controllers/.+$}) { "features" }
   watch(%r{^app/views/.+$}) { "features" }
+  watch(%r{^config/.+$}) { "features" }
 end
