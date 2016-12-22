@@ -60,6 +60,7 @@ group :test do
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   gem 'selenium-webdriver', '~> 3.0', '>= 3.0.3'
   gem 'capybara-webkit', '~> 1.11', '>= 1.11.1'
+  gem 'wrong', '~> 0.7.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

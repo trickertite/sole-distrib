@@ -10,4 +10,4 @@ So that I don't have to manually maintain product specs.
       | name       | category | price |
       | samsung J5 | Mobile   | 22000 |
     Then the product should be saved
-    And I should see the message 'product is successfully created'
+    And I should see the message "product is successfully created"

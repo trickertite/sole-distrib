@@ -12,9 +12,8 @@ When(/^I create the following product$/) do |products|
 end
 
 Then(/^the product should be saved$/) do
-  expect(Product.count).to eq(1)
-end
-
-Then(/^I should see the message 'product is successfully created'$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  # execute block for 10 seconds (again and again) unless the expectation get true otherwise raise the exception
+  eventually(:timeout => 10) { 
+    expect(Product.count).to eql(1)
+  }
 end
