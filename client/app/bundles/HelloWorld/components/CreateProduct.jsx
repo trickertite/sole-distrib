@@ -1,8 +1,15 @@
 import React, { PropTypes } from 'react';
+import NotificationSystem from 'react-notification-system';
 
 export default class CreateProduct extends React.Component {
+  _notificationSystem: null
+
   constructor() {
     super();
+  }
+
+  componentDidMount() {
+    this._notificationSystem = this.refs.notificationSystem;
   }
 
   submitProduct(e) {
@@ -15,7 +22,10 @@ export default class CreateProduct extends React.Component {
       type: 'POST',
       data: { product: { name: name, price: price, category: category } },
       success: (response) => {
-        console.log('it worked!', response);
+        this._notificationSystem.addNotification({
+          message: response.msg,
+          level: 'success'
+        });
       }
     });
   }
@@ -33,6 +43,7 @@ export default class CreateProduct extends React.Component {
           </select>
           <button type="submit">Submit</button>
         </form>
+        <NotificationSystem ref="notificationSystem" />
       </div>
     )
   }

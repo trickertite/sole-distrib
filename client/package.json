@@ -28,7 +28,8 @@
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-on-rails": "6.3.2",
-    "webpack": "^1.12.14"
+    "webpack": "^1.12.14",
+    "react-notification-system": "^0.2.11"
   },
   "devDependencies": {
   }
