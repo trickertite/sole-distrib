@@ -42,6 +42,6 @@ guard "cucumber", cucumber_options do
   watch(%r{^app/controllers/.+$}) { "features" }
   watch(%r{^app/models/.+$}) { "features" }
   watch(%r{^app/views/.+$}) { "features" }
-  watch(%r{^app/assets/javascripts/components/.+$}) { "features" }
+  watch(%r{^client/app/bundles/HelloWorld/.+$}) { "features" }
   watch(%r{^config/.+$}) { "features" }
 end

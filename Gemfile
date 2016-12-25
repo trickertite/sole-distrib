@@ -32,7 +32,6 @@ gem 'jbuilder', '~> 2.5'
 
 #Added gems
 gem 'pg', '~> 0.18.4'
-gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'react_on_rails', '~> 6.3', '>= 6.3.2'
 
 group :development, :test do
