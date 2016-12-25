@@ -28,3 +28,6 @@ node_modules
 
 # Generated js bundles
 /app/assets/webpack/*
+
+# ignore database.yml file
+config/database.yml
