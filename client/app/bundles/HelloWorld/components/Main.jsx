@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import CreateProduct from './CreateProduct';
+import Products from './Products';
 
 export default class Main extends React.Component {
 
@@ -18,6 +19,7 @@ export default class Main extends React.Component {
   render () {
     return (
       <div>
+        <Products />
         <button onClick={this._onButtonClick}>Create Product</button>
         {this.state.showCreateProductFormComp ?
            <CreateProduct /> :
