@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+
+  product:
+    successfully_created: "product is successfully created"
