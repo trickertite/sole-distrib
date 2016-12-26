@@ -4,11 +4,7 @@ Given(/^I go to create product page$/) do
 end
 
 When(/^I create the following product$/) do |products|
-  product = products.hashes.first
-  fill_in('name', {with: product['name']})
-  fill_in('price', {with: product['price']})
-  select(product['category'], {from: 'category'})
-  click_button('Submit')
+  createProduct(products.hashes.first)
 end
 
 Then(/^the product should be saved$/) do
@@ -16,4 +12,18 @@ Then(/^the product should be saved$/) do
   eventually(:timeout => 10) { 
     expect(Product.count).to eql(1)
   }
+end
+
+Given(/^I have following products$/) do |table|
+  table.hashes.each do |product|
+    step "I go to create product page"
+    createProduct(product)
+  end
+  eventually(:timeout => 10) { 
+    expect(Product.count).to eql(3)
+  }
+end
+
+Then(/^I should see the following products$/) do |table|
+  expect(find('ul.products').all('li').size).to eq(3)
 end
