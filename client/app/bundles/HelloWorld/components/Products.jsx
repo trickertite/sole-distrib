@@ -11,14 +11,19 @@ export default class Products extends React.Component {
   }
 
 componentDidMount() { $.getJSON('/products', (response) => { 
-  console.log(response);
-  this.setState({ products: response.products }) });
+  this.setState({ products: response }) });
 }
 
   render () {
-    // let createProduct = ({product}) => <Product product={product} />
-    // return this.state.products.map((product));
-    return <Product product={{name: 'samsung'}} />
+    let productListItems = this.state.products.map((product, index) => {
+      return <Product product={{name: product.name}} key={index} />;
+    });
+
+    return (
+      <ul className="products">
+        {productListItems}
+      </ul>
+    )
   }
 }
 

@@ -8,7 +8,6 @@ When(/^I create the following product$/) do |products|
 end
 
 Then(/^the product should be saved$/) do
-  # execute block for 10 seconds (again and again) unless the expectation get true otherwise raise the exception
   eventually(:timeout => 10) { 
     expect(Product.count).to eql(1)
   }
