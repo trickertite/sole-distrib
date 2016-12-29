@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 #Added gems
 gem 'pg', '~> 0.18.4'
 gem 'react_on_rails', '~> 6.3', '>= 6.3.2'
+gem 'bootstrap', '~> 4.0.0.alpha3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

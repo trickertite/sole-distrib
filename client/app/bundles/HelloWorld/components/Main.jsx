@@ -18,13 +18,18 @@ export default class Main extends React.Component {
 
   render () {
     return (
-      <div>
-        <Products />
-        <button onClick={this._onButtonClick}>Create Product</button>
-        {this.state.showCreateProductFormComp ?
-           <CreateProduct /> :
-           null
-        }
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+            <Products />
+            <br/>
+            <button onClick={this._onButtonClick} className="btn btn-primary">Create Product</button>
+            {this.state.showCreateProductFormComp ?
+               <CreateProduct /> :
+               null
+            }
+          </div>
+        </div>
       </div>
     )
   }

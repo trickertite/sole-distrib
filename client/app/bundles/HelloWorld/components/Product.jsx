@@ -8,7 +8,7 @@ export default class Product extends React.Component {
 
   render () {
     return (
-        <li>{this.props.product.name}</li>
+        <li className="list-group-item">{this.props.product.name}</li>
     )
   }
 }

@@ -20,7 +20,7 @@ componentDidMount() { $.getJSON('/products', (response) => {
     });
 
     return (
-      <ul className="products">
+      <ul className="products list-group">
         {productListItems}
       </ul>
     )
