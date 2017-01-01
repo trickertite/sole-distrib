@@ -3,16 +3,21 @@ import Form from "react-jsonschema-form";
 import NotificationSystem from 'react-notification-system';
 
 const schema = {
-  title: "Todo",
+  title: "Create Product",
   type: "object",
-  required: ["title"],
+  required: ["name", "price"],
   properties: {
-    title: {type: "string", title: "Title", default: "A new task"},
-    done: {type: "boolean", title: "Done?", default: false}
+    name: {type: "string", title: "name"},
+    price: {type: "number", title: "price"},
+    category: {
+      title: "category",
+      type: "string",
+      enum: ["mobile", "watches", "detergents"],
+      enumNames: ["Mobile", "Watches", "Detergents"]
+    }
   }
 };
 
-// const log = (type) => console.log.bind(console, type);
 const onSubmit = ({formData}) => console.log(formData);
 
 export default class CreateProduct extends React.Component {
@@ -26,15 +31,11 @@ export default class CreateProduct extends React.Component {
     this._notificationSystem = this.refs.notificationSystem;
   }
 
-  submitProduct(e) {
-    e.preventDefault();
-    let name = this.refs.name.value;
-    let price = this.refs.price.value;
-    let category = this.refs.category.value;
+  submitProduct({formData}) {
     $.ajax({
       url: '/products',
       type: 'POST',
-      data: { product: { name: name, price: price, category: category } },
+      data: { product: formData },
       success: (response) => {
         this._notificationSystem.addNotification({
           message: response.msg,
@@ -46,22 +47,11 @@ export default class CreateProduct extends React.Component {
 
   render () {
     return (
-      // <div>
-      //   <form onSubmit={this.submitProduct.bind(this)}>
-      //     <input id="name" ref="name" placeholder="Enter Product Name"/>
-      //     <input id="price" ref="price" placeholder="Enter Product Price"/>
-      //     <select ref="category" name="category" id="category">
-      //       <option value="mobile">Mobile</option>
-      //       <option value="watches">Watches</option>
-      //       <option value="detergents">Detergents</option>
-      //     </select>
-      //     <button type="submit">Submit</button>
-      //   </form>
-      //   <NotificationSystem ref="notificationSystem" />
-      // </div>
-
-<Form schema={schema}
-        onSubmit={onSubmit} />
+      <div>
+        <Form schema={schema}
+              onSubmit={this.submitProduct.bind(this)} />
+        <NotificationSystem ref="notificationSystem" />
+      </div>
     )
   }
 }
