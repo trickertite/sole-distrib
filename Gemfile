@@ -32,12 +32,15 @@ gem 'jbuilder', '~> 2.5'
 
 #Added gems
 gem 'pg', '~> 0.18.4'
+gem 'react_on_rails', '~> 6.3', '>= 6.3.2'
 gem 'bootstrap', '~> 4.0.0.alpha3'
-gem 'react-rails', '~> 1.7', '>= 1.7.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+
+  gem 'guard'
+  gem 'guard-cucumber', '~> 2.1', '>= 2.1.2'
 end
 
 group :development do
@@ -50,11 +53,17 @@ group :development do
 end
 
 group :test do
+  gem 'capybara', '~> 2.7.1'
   gem 'cucumber-rails', '~> 1.4', '>= 1.4.3', require: false
   gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
   gem 'factory_girl', '~> 4.5'
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
+  gem 'selenium-webdriver', '~> 3.0', '>= 3.0.3'
+  gem 'capybara-webkit', '~> 1.11', '>= 1.11.1'
+  gem 'wrong', '~> 0.7.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'mini_racer', platforms: :ruby
