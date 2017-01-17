@@ -15,6 +15,10 @@ class ProductContainer extends React.PureComponent {
     this._onButtonClick = this._onButtonClick.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchProducts();
+  }
+
   _onButtonClick() {
     this.setState({showCreateProductFormComp: true});
   }

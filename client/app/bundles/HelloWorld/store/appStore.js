@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
-import productReducer, {initialState as ProductInitialState} from '../reducers/ProductReducer';
+import productReducer from '../reducers/ProductReducer';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import promise from "redux-promise-middleware";
