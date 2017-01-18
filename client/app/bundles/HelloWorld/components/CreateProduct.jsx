@@ -37,6 +37,7 @@ export default class CreateProduct extends React.Component {
       type: 'POST',
       data: { product: formData },
       success: (response) => {
+        this.props.gofetch();
         this._notificationSystem.addNotification({
           message: response.msg,
           level: 'success'
