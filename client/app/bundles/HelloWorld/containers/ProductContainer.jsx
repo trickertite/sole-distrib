@@ -20,7 +20,7 @@ class ProductContainer extends React.PureComponent {
   }
 
   _onButtonClick() {
-    this.setState({showCreateProductFormComp: true});
+    this.setState({showCreateProductFormComp: !this.state.showCreateProductFormComp});
   }
 
   render () {
@@ -30,7 +30,7 @@ class ProductContainer extends React.PureComponent {
           <div className="col-md-12">
             <Products products={this.props.products} />
             <br/>
-            <button onClick={this._onButtonClick} className="btn btn-primary">Create Product</button>
+            <button onClick={this._onButtonClick} className="btn btn-primary" data-toggle="button">Create Product</button>
             {this.state.showCreateProductFormComp ?
                <CreateProduct gofetch={() => this.props.fetchProducts()} /> :
                null
