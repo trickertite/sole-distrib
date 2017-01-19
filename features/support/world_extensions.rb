@@ -8,3 +8,17 @@ module KnowProduct
 end
 
 World(KnowProduct)
+
+module KnowAdmin
+  class AppAdmin
+    def createUser(user)
+
+    end
+  end
+
+  def appAdmin
+    @appAdmin ||= AppAdmin.new
+  end
+end
+
+World(KnowAdmin)
