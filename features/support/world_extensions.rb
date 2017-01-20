@@ -11,8 +11,14 @@ World(KnowProduct)
 
 module KnowAdmin
   class AppAdmin
-    def createUserAccount(user)
+    include Capybara::DSL
 
+    def createUserAccount(user)
+      visit('/')
+      fill_in('email', {with: Faker::Internet.email})
+      fill_in('password', {with: Faker::Internet.password(8)})
+      fill_in('password', {with: Faker::Internet.password(8)})
+      click_button('Sign Up')
     end
   end
 
