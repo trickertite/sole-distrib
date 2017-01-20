@@ -3,11 +3,12 @@ Given(/^I go to App Admin$/) do
 end
 
 When(/^I ask him to create an account$/) do
-  appAdmin.createUser(testUser)
+  appAdmin.createUserAccount(testUser)
 end
 
 Then(/^my account should be created$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(User.first).to eq(1)
+  expect(User.first.first_name).to eq(testUser.first_name)
 end
 
 Then(/^I should be given my credentials$/) do

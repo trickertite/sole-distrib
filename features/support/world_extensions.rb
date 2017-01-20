@@ -11,7 +11,7 @@ World(KnowProduct)
 
 module KnowAdmin
   class AppAdmin
-    def createUser(user)
+    def createUserAccount(user)
 
     end
   end
