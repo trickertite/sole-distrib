@@ -19,6 +19,17 @@ module KnowAdmin
   def appAdmin
     @appAdmin ||= AppAdmin.new
   end
+
+  def testUser
+    first_name = Faker::Name.first_name
+    return {
+      first_name: first_name,
+      last_name: Faker::Name.last_name,
+      age: Faker::Number.between(15, 25),
+      email: Faker::Internet.free_email(first_name),
+      password: Faker::Internet.password(8)
+    }
+  end
 end
 
 World(KnowAdmin)

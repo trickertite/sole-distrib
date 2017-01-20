@@ -3,14 +3,7 @@ Given(/^I go to App Admin$/) do
 end
 
 When(/^I ask him to create an account$/) do
-  user = {
-    first_name: 'hassan',
-    last_name: 'ali',
-    age: 24,
-    email: 'trickertite@gmail.com',
-    password: 'top_secret'
-  }
-  appAdmin.createUser(user)
+  appAdmin.createUser(testUser)
 end
 
 Then(/^my account should be created$/) do

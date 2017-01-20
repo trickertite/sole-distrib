@@ -94,6 +94,8 @@ GEM
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
+    faker (1.7.2)
+      i18n (~> 0.5)
     ffi (1.9.14)
     foreman (0.82.0)
       thor (~> 0.19.1)
@@ -285,6 +287,7 @@ DEPENDENCIES
   cucumber-rails (~> 1.4, >= 1.4.3)
   database_cleaner (~> 1.5, >= 1.5.3)
   factory_girl (~> 4.5)
+  faker (~> 1.6, >= 1.6.3)
   guard
   guard-cucumber (~> 2.1, >= 2.1.2)
   jbuilder (~> 2.5)

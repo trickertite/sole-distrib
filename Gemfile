@@ -41,6 +41,7 @@ group :development, :test do
 
   gem 'guard'
   gem 'guard-cucumber', '~> 2.1', '>= 2.1.2'
+  gem 'faker', '~> 1.6', '>= 1.6.3'
 end
 
 group :development do
