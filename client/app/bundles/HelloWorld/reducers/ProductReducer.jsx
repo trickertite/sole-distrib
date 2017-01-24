@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import * as productConstants from '../constants/productConstants';
 
 const productsReducer = (state = {
@@ -14,6 +13,4 @@ const productsReducer = (state = {
   }
 };
 
-const indexReducer = combineReducers({ productsReducer });
-
-export default indexReducer;
+export default productsReducer;
