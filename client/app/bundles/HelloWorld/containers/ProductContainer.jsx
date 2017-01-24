@@ -43,7 +43,7 @@ class ProductContainer extends React.PureComponent {
 }
 
 // Which part of the Redux global state does our component want to receive as props?
-const mapStateToProps = (state) => ({ products: state.products });
+const mapStateToProps = (state) => ({ products: state.productsReducer });
 
 const mapDispatchToProps = (dispatch) => {
     return {

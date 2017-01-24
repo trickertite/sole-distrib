@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import * as productConstants from '../constants/productConstants';
 
-const products = (state = {
+const productsReducer = (state = {
   products: [],
 }, action) => {
   switch (action.type) {
@@ -14,6 +14,6 @@ const products = (state = {
   }
 };
 
-const productReducer = combineReducers({ products });
+const indexReducer = combineReducers({ productsReducer });
 
-export default productReducer;
+export default indexReducer;
