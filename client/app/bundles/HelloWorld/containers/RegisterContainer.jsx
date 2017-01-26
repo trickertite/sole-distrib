@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import Form from "react-jsonschema-form";
+import { connect } from 'react-redux';
+import { registerUser, signUpUser } from '../actions/authActions';
 
 const schema = {
   title: "Sign Up",
@@ -15,19 +17,16 @@ const schema = {
 
 const onSubmit = ({formData}) => console.log(formData);
 
-export default class CreateProduct extends React.Component {
+class RegisterContainer extends React.PureComponent {
   _notificationSystem: null
 
   constructor() {
     super();
   }
 
-  componentDidMount() {
-    this._notificationSystem = this.refs.notificationSystem;
-  }
-
   signUp({formData}) {
     console.log('********* hello *************');
+    this.props.signUpUser(formData);
     // $.ajax({
     //   url: '/products',
     //   type: 'POST',
@@ -51,3 +50,15 @@ export default class CreateProduct extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => (null);
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signUpUser: () => {
+            dispatch(signUpUser());
+        }
+    };
+};
+
+export default connect(null, mapDispatchToProps)(RegisterContainer);

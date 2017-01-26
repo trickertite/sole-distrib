@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import ProductContainer from './containers/ProductContainer';
-import Register from './components/auth/Register';
+import Register from './containers/RegisterContainer';
 import App from './components/App';
 
 export default (  
