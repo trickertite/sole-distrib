@@ -25,7 +25,6 @@ class RegisterContainer extends React.PureComponent {
   }
 
   signUp({formData}) {
-    console.log('********* hello *************');
     this.props.signUpUser(formData);
     // $.ajax({
     //   url: '/products',
@@ -53,10 +52,10 @@ class RegisterContainer extends React.PureComponent {
 
 const mapStateToProps = (state) => (null);
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, user) => {
     return {
-        signUpUser: () => {
-            dispatch(signUpUser());
+        signUpUser: (user) => {
+            dispatch(signUpUser(user));
         }
     };
 };

@@ -14,6 +14,7 @@ const API_URL = 'http://localhost:3000/api';
 // });
 
 export function signUpUser(user){
+  console.log(user);
   return function(dispatch){
     axios.post('/auth/signUp', user)
     .then((response) => {
