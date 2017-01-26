@@ -28,6 +28,11 @@ const config = {
       'react-dom': path.resolve('./node_modules/react-dom'),
     },
   },
+
+  eslint: {
+    configFile: './.eslintrc'
+  },
+
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
@@ -43,9 +48,14 @@ const config = {
       },
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader',
+        loaders: ['babel-loader', 'eslint-loader'],
         exclude: /node_modules/,
       },
+      // {
+      //   test: /\.jsx?$/,
+      //   exclude: /node_modules/,
+      //   loader: 'eslint-loader'
+      // }
     ],
   },
 };
