@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
-import indexReducer from '../reducers/IndexReducer';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-import promise from "redux-promise-middleware";
+import promise from 'redux-promise-middleware';
+import indexReducer from '../reducers/IndexReducer';
 
-const configureStore = (railsProps) => (
+const configureStore = railsProps => (
   applyMiddleware(thunk, logger(), promise())(createStore)(indexReducer, railsProps)
 );
 

@@ -1,59 +1,62 @@
-import React, { PropTypes } from 'react';
-import Form from "react-jsonschema-form";
+import React from 'react';
+import Form from 'react-jsonschema-form';
 import NotificationSystem from 'react-notification-system';
 
 const schema = {
-  title: "Create Product",
-  type: "object",
-  required: ["name", "price"],
+  title: 'Create Product',
+  type: 'object',
+  required: ['name', 'price'],
   properties: {
-    name: {type: "string", title: "name"},
-    price: {type: "number", title: "price"},
+    name: { type: 'string', title: 'name' },
+    price: { type: 'number', title: 'price' },
     category: {
-      title: "category",
-      type: "string",
-      enum: ["mobile", "watches", "detergents"],
-      enumNames: ["Mobile", "Watches", "Detergents"]
-    }
-  }
+      title: 'category',
+      type: 'string',
+      enum: ['mobile', 'watches', 'detergents'],
+      enumNames: ['Mobile', 'Watches', 'Detergents'],
+    },
+  },
 };
 
-const onSubmit = ({formData}) => console.log(formData);
+// const onSubmit = ({ formData }) => console.log(formData);
 
 export default class CreateProduct extends React.Component {
-  _notificationSystem: null
 
   constructor() {
     super();
   }
 
   componentDidMount() {
-    this._notificationSystem = this.refs.notificationSystem;
+    this.notifSystem = this.refs.notificationSystem;
   }
 
-  submitProduct({formData}) {
+  notifSystem: null
+
+  submitProduct({ formData }) {
     $.ajax({
       url: '/products',
       type: 'POST',
       data: { product: formData },
       success: (response) => {
         this.props.gofetch();
-        this._notificationSystem.addNotification({
+        this.notifSystem.addNotification({
           message: response.msg,
-          level: 'success'
+          level: 'success',
         });
-      }
+      },
     });
   }
 
-  render () {
+  render() {
     return (
       <div>
-        <Form schema={schema}
-              onSubmit={this.submitProduct.bind(this)} />
-        <NotificationSystem ref="notificationSystem" />
+        <Form
+          schema={schema}
+          onSubmit={this.submitProduct.bind(this)}
+        />
+        <NotificationSystem ref='notificationSystem' />
       </div>
-    )
+    );
   }
 }
 

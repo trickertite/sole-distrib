@@ -1,7 +1,6 @@
-import axios from 'axios';  
-import { browserHistory } from 'react-router';  
-import cookie from 'react-cookie';  
-import { AUTH_USER,  
+import axios from 'axios';
+import cookie from 'react-cookie';
+import { AUTH_USER,
          AUTH_ERROR,
          UNAUTH_USER,
          PROTECTED_TEST } from '../constants/authConstants';
@@ -13,9 +12,17 @@ const API_URL = 'http://localhost:3000/api';
 //   payload: axios.post('/auth/signUp', user)
 // });
 
-export function signUpUser(user){
-  console.log(user);
-  return function(dispatch){
+export function logoutUser() {
+  return function logout(dispatch) {
+    dispatch({ type: UNAUTH_USER });
+    cookie.remove('token', { path: '/' });
+
+    // window.location.href = CLIENT_ROOT_URL + '/login';
+  };
+}
+
+export function signUpUser(user) {
+  return function register() {
     axios.post('/auth/signUp', user)
     .then((response) => {
       console.log(response);
@@ -23,49 +30,50 @@ export function signUpUser(user){
     .catch((error) => {
       console.log(error);
     });
-  }
+  };
 }
 
-export function errorHandler(dispatch, error, type) {  
+export function errorHandler(dispatch, error, type) {
   let errorMessage = '';
 
-  if(error.data.error) {
+  if (error.data.error) {
     errorMessage = error.data.error;
-  } else if(error.data){
+  } else if (error.data) {
     errorMessage = error.data;
   } else {
     errorMessage = error;
   }
 
-  if(error.status === 401) {
+  if (error.status === 401) {
     dispatch({
-      type: type,
-      payload: 'You are not authorized to do this. Please login and try again.'
+      type,
+      payload: `You are not authorized to do this. 
+                Please login and try again.`,
     });
     logoutUser();
   } else {
     dispatch({
-      type: type,
-      payload: errorMessage
+      type,
+      payload: errorMessage,
     });
   }
 }
 
-export function loginUser({ email, password }) {  
-  return function(dispatch) {
+export function loginUser({ email, password }) {
+  return function login(dispatch) {
     axios.post(`${API_URL}/auth/login`, { email, password })
-    .then(response => {
+    .then((response) => {
       cookie.save('token', response.data.token, { path: '/' });
       dispatch({ type: AUTH_USER });
-      window.location.href = CLIENT_ROOT_URL + '/dashboard';
+      // window.location.href = CLIENT_ROOT_URL + '/dashboard';
     })
     .catch((error) => {
-      errorHandler(dispatch, error.response, AUTH_ERROR)
+      errorHandler(dispatch, error.response, AUTH_ERROR);
     });
-    }
-  }
+  };
+}
 
-export function registerUser({ email, firstName, lastName, password }) {  
+export function registerUser({ email, firstName, lastName, password }) {
   return function(dispatch) {
     axios.post(`${API_URL}/auth/register`, { email, firstName, lastName, password })
     .then(response => {
@@ -76,15 +84,6 @@ export function registerUser({ email, firstName, lastName, password }) {
     .catch((error) => {
       errorHandler(dispatch, error.response, AUTH_ERROR)
     });
-  }
-}
-
-export function logoutUser() {  
-  return function (dispatch) {
-    dispatch({ type: UNAUTH_USER });
-    cookie.remove('token', { path: '/' });
-
-    window.location.href = CLIENT_ROOT_URL + '/login';
   }
 }
 

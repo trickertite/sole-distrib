@@ -12,7 +12,5 @@
     "test": "rspec"
   },
   "dependencies": {
-    "react-cookie": "^1.0.4",
-    "redux-thunk": "^2.1.0"
   }
 }
