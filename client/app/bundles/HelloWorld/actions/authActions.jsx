@@ -22,15 +22,13 @@ export function logoutUser() {
 }
 
 export function signUpUser(user) {
-  return function register() {
-    axios.post('/auth/signUp', user)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  };
+  return () => axios.post('/auth/signUp', user)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 }
 
 export function errorHandler(dispatch, error, type) {
