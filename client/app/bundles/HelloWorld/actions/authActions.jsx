@@ -7,12 +7,17 @@ export const login = (credentials) => {
   return (dispatch) => {
     dispatch({ type: 'LOGIN_REQUEST' });
 
-    axios.post('/knock', credentials).then((res) => {
-      localStorage.authToken = res.data.token;
+    const authHash = {
+      auth: credentials,
+    };
+
+    axios.post('/user_token', authHash).then((res) => {
+      console.log(res.data.jwt);
+      localStorage.set('authToken', res.data.jwt);
 
       dispatch({
         type: 'LOGIN_SUCCESS',
-        user: jwtDecode(res.data.token),
+        user: jwtDecode(res.data.jwt),
       });
     }).catch((res) => {
       dispatch({

@@ -4,7 +4,7 @@ import ProductContainer from './containers/ProductContainer';
 import Register from './containers/RegisterContainer';
 import App from './components/App';
 
-export default (  
+export default (
   <Route path="/" component={App}>
     <IndexRoute component={ProductContainer} />
     <Route path="register" component={Register} />

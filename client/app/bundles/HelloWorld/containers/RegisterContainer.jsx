@@ -1,7 +1,9 @@
 import React from 'react';
 import Form from 'react-jsonschema-form';
 import { connect } from 'react-redux';
-import { signUpUser } from '../actions/authActions';
+// import { signUpUser } from '../actions/authActions';
+import { LogIn } from '../components/Login';
+import { login } from '../actions/authActions';
 
 const schema = {
   title: 'Sign Up',
@@ -19,17 +21,10 @@ const schema = {
 
 class RegisterContainer extends React.PureComponent {
 
-  signUp({ formData }) {
-    this.props.signUpUser(formData);
-  }
-
   render() {
     return (
       <div>
-        <Form
-          schema={schema}
-          onSubmit={this.signUp.bind(this)}
-        />
+        <LogIn login={(credentials) => this.props.login(credentials)} />
       </div>
     );
   }
@@ -37,8 +32,8 @@ class RegisterContainer extends React.PureComponent {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signUpUser: (user) => {
-      dispatch(signUpUser(user));
+    login: (credentials) => {
+      dispatch(login(credentials));
     },
   };
 };
