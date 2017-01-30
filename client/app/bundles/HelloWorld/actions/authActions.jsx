@@ -1,103 +1,129 @@
+// import api from 'utils/api';
+import jwtDecode from 'jwt-decode';
 import axios from 'axios';
-import cookie from 'react-cookie';
-import { AUTH_USER,
-         AUTH_ERROR,
-         UNAUTH_USER,
-         PROTECTED_TEST } from '../constants/authConstants';
+import localStorage from 'local-storage';
 
-const API_URL = 'http://localhost:3000/api';
+export const login = (credentials) => {
+  return (dispatch) => {
+    dispatch({ type: 'LOGIN_REQUEST' });
 
-// export const signUpUser = (user) => ({
-//   type: 'SIGN_UP_USER',
-//   payload: axios.post('/auth/signUp', user)
-// });
+    axios.post('/knock', credentials).then((res) => {
+      localStorage.authToken = res.data.token;
 
-export function logoutUser() {
-  return function logout(dispatch) {
-    dispatch({ type: UNAUTH_USER });
-    cookie.remove('token', { path: '/' });
-
-    // window.location.href = CLIENT_ROOT_URL + '/login';
-  };
-}
-
-export function signUpUser(user) {
-  return () => axios.post('/auth/signUp', user)
-  .then((response) => {
-    console.log(response);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-}
-
-export function errorHandler(dispatch, error, type) {
-  let errorMessage = '';
-
-  if (error.data.error) {
-    errorMessage = error.data.error;
-  } else if (error.data) {
-    errorMessage = error.data;
-  } else {
-    errorMessage = error;
-  }
-
-  if (error.status === 401) {
-    dispatch({
-      type,
-      payload: `You are not authorized to do this. 
-                Please login and try again.`,
-    });
-    logoutUser();
-  } else {
-    dispatch({
-      type,
-      payload: errorMessage,
-    });
-  }
-}
-
-export function loginUser({ email, password }) {
-  return function login(dispatch) {
-    axios.post(`${API_URL}/auth/login`, { email, password })
-    .then((response) => {
-      cookie.save('token', response.data.token, { path: '/' });
-      dispatch({ type: AUTH_USER });
-      // window.location.href = CLIENT_ROOT_URL + '/dashboard';
-    })
-    .catch((error) => {
-      errorHandler(dispatch, error.response, AUTH_ERROR);
-    });
-  };
-}
-
-export function registerUser({ email, firstName, lastName, password }) {
-  return function(dispatch) {
-    axios.post(`${API_URL}/auth/register`, { email, firstName, lastName, password })
-    .then(response => {
-      cookie.save('token', response.data.token, { path: '/' });
-      dispatch({ type: AUTH_USER });
-      window.location.href = CLIENT_ROOT_URL + '/dashboard';
-    })
-    .catch((error) => {
-      errorHandler(dispatch, error.response, AUTH_ERROR)
-    });
-  }
-}
-
-export function protectedTest() {  
-  return function(dispatch) {
-    axios.get(`${API_URL}/protected`, {
-      headers: { 'Authorization': cookie.load('token') }
-    })
-    .then(response => {
       dispatch({
-        type: PROTECTED_TEST,
-        payload: response.data.content
+        type: 'LOGIN_SUCCESS',
+        user: jwtDecode(res.data.token),
       });
-    })
-    .catch((error) => {
-      errorHandler(dispatch, error.response, AUTH_ERROR)
+    }).catch((res) => {
+      dispatch({
+        type: 'LOGIN_FAILURE',
+        errorMessage: res.data.error,
+      });
     });
-  }
-}
+  };
+};
+
+
+// import axios from 'axios';
+// import cookie from 'react-cookie';
+// import { AUTH_USER,
+//          AUTH_ERROR,
+//          UNAUTH_USER,
+//          PROTECTED_TEST } from '../constants/authConstants';
+
+// const API_URL = 'http://localhost:3000/api';
+
+// // export const signUpUser = (user) => ({
+// //   type: 'SIGN_UP_USER',
+// //   payload: axios.post('/auth/signUp', user)
+// // });
+
+// export function logoutUser() {
+//   return function logout(dispatch) {
+//     dispatch({ type: UNAUTH_USER });
+//     cookie.remove('token', { path: '/' });
+
+//     // window.location.href = CLIENT_ROOT_URL + '/login';
+//   };
+// }
+
+// export function signUpUser(user) {
+//   return () => axios.post('/auth/signUp', user)
+//   .then((response) => {
+//     console.log(response);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+// }
+
+// export function errorHandler(dispatch, error, type) {
+//   let errorMessage = '';
+
+//   if (error.data.error) {
+//     errorMessage = error.data.error;
+//   } else if (error.data) {
+//     errorMessage = error.data;
+//   } else {
+//     errorMessage = error;
+//   }
+
+//   if (error.status === 401) {
+//     dispatch({
+//       type,
+//       payload: `You are not authorized to do this. 
+//                 Please login and try again.`,
+//     });
+//     logoutUser();
+//   } else {
+//     dispatch({
+//       type,
+//       payload: errorMessage,
+//     });
+//   }
+// }
+
+// export function loginUser({ email, password }) {
+//   return function login(dispatch) {
+//     axios.post(`${API_URL}/auth/login`, { email, password })
+//     .then((response) => {
+//       cookie.save('token', response.data.token, { path: '/' });
+//       dispatch({ type: AUTH_USER });
+//       // window.location.href = CLIENT_ROOT_URL + '/dashboard';
+//     })
+//     .catch((error) => {
+//       errorHandler(dispatch, error.response, AUTH_ERROR);
+//     });
+//   };
+// }
+
+// export function registerUser({ email, firstName, lastName, password }) {
+//   return function(dispatch) {
+//     axios.post(`${API_URL}/auth/register`, { email, firstName, lastName, password })
+//     .then(response => {
+//       cookie.save('token', response.data.token, { path: '/' });
+//       dispatch({ type: AUTH_USER });
+//       window.location.href = CLIENT_ROOT_URL + '/dashboard';
+//     })
+//     .catch((error) => {
+//       errorHandler(dispatch, error.response, AUTH_ERROR)
+//     });
+//   }
+// }
+
+// export function protectedTest() {  
+//   return function(dispatch) {
+//     axios.get(`${API_URL}/protected`, {
+//       headers: { 'Authorization': cookie.load('token') }
+//     })
+//     .then(response => {
+//       dispatch({
+//         type: PROTECTED_TEST,
+//         payload: response.data.content
+//       });
+//     })
+//     .catch((error) => {
+//       errorHandler(dispatch, error.response, AUTH_ERROR)
+//     });
+//   }
+// }
