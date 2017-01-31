@@ -28,6 +28,15 @@ export const login = (credentials) => {
   };
 };
 
+export const signUp = (user) => {
+  return (dispatch) => {
+    axios.post('/users', user).then((res) => {
+      return res;
+    }).catch((error) => {
+      return error;
+    });
+  };
+};
 
 // import axios from 'axios';
 // import cookie from 'react-cookie';
@@ -76,7 +85,7 @@ export const login = (credentials) => {
 //   if (error.status === 401) {
 //     dispatch({
 //       type,
-//       payload: `You are not authorized to do this. 
+//       payload: `You are not authorized to do this.
 //                 Please login and try again.`,
 //     });
 //     logoutUser();
@@ -116,7 +125,7 @@ export const login = (credentials) => {
 //   }
 // }
 
-// export function protectedTest() {  
+// export function protectedTest() {
 //   return function(dispatch) {
 //     axios.get(`${API_URL}/protected`, {
 //       headers: { 'Authorization': cookie.load('token') }
