@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Form from 'react-jsonschema-form';
 
 const schema = {
@@ -12,9 +12,15 @@ const schema = {
   },
 };
 
-// const onSubmit = ({formData}) => console.log(formData);
+export default class SignUp extends React.Component {
+  static propTypes = {
+    signUp: PropTypes.func.isRequired,
+  }
 
-export class SignUp extends React.Component {
+  constructor() {
+    super();
+    this.signUp = this.signUp.bind(this);
+  }
 
   signUp({ formData }) {
     this.props.signUp(formData);
@@ -25,7 +31,7 @@ export class SignUp extends React.Component {
       <div>
         <Form
           schema={schema}
-          onSubmit={this.signUp.bind(this)}
+          onSubmit={this.signUp}
         />
       </div>
     );
