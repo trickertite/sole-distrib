@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Form from 'react-jsonschema-form';
 import NotificationSystem from 'react-notification-system';
 
@@ -21,9 +21,13 @@ const schema = {
 // const onSubmit = ({ formData }) => console.log(formData);
 
 export default class CreateProduct extends React.Component {
+  propTypes = {
+    gofetch: PropTypes.func.isRequired,
+  }
 
   constructor() {
     super();
+    this.submitProduct = this.submitProduct.bind(this);
   }
 
   componentDidMount() {
@@ -52,11 +56,10 @@ export default class CreateProduct extends React.Component {
       <div>
         <Form
           schema={schema}
-          onSubmit={this.submitProduct.bind(this)}
+          onSubmit={this.submitProduct}
         />
         <NotificationSystem ref='notificationSystem' />
       </div>
     );
   }
 }
-

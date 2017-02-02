@@ -6,7 +6,7 @@ export const fetchProducts = () => ({
     method: 'get',
     url: '/products',
     headers: {
-      Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0ODU5MzY3MTUsInN1YiI6Mn0.fXgn25Q9GJj3vJJw3a9ja3gPu0TTQ4Yu10KJbDocKlc',
+      Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0ODYxMDAyMTksInN1YiI6Mn0.xegMtnWq1xSTOxgZGq_WgPY31QGVAjYzRaYB6D5idP4',
     },
   }),
 });

@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { SignUp } from '../components/SignUp';
-import { LogIn } from '../components/Login';
+import SignUp from '../components/SignUp';
+import LogIn from '../components/Login';
 import { login, signUp } from '../actions/authActions';
 
 class RegisterContainer extends React.PureComponent {

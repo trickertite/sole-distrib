@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Product from './Product';
 
 export default class Products extends React.Component {
+  propTypes = {
+    products: PropTypes.arrayOf(PropTypes.object),
+  }
+
   render() {
-    let productListItems =
-    this.props.products.products.map((product, index) => {
+    const productListItems =
+    this.props.products.products.map((product) => {
       return (<Product
-        product={{ name: product.name }}
-        key={index}
+        product={product}
+        key={product.id}
       />);
     });
 
@@ -18,4 +22,3 @@ export default class Products extends React.Component {
     );
   }
 }
-
