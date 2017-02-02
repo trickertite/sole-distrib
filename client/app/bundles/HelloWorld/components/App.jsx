@@ -1,8 +1,10 @@
-import React from 'react';
-import { Router, Route, IndexRoute, Link, hashHistory }
-        from 'react-router';
+import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 export default class CreateProduct extends React.Component {
+  propTypes = {
+    children: PropTypes.node,
+  }
   render() {
     return (
       <div>
@@ -19,4 +21,3 @@ export default class CreateProduct extends React.Component {
     );
   }
 }
-

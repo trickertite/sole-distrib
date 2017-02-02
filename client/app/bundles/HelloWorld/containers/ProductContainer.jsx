@@ -1,5 +1,5 @@
 // Simple example of a React "smart" component
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Products from '../components/Products';
 import CreateProduct from '../components/CreateProduct';
@@ -7,6 +7,11 @@ import { fetchProducts } from '../actions/productActions';
 // import * as actions from '../actions/helloWorldActionCreators';
 
 class ProductContainer extends React.PureComponent {
+  propTypes = {
+    fetchProducts: PropTypes.func.isRequired,
+    products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +30,7 @@ class ProductContainer extends React.PureComponent {
     });
   }
 
-  render () {
+  render() {
     return (
       <div className="container">
         <div className="row">
