@@ -9,9 +9,9 @@ import ReactOnRails from 'react-on-rails';
 //   CreateProduct,
 // });
 
-import ProductApp from './ProductApp';
+import MainApp from './MainApp';
 
 // This is how react_on_rails can see the HelloWorld in the browser.
 ReactOnRails.register({
-  ProductApp,
+  MainApp,
 });
