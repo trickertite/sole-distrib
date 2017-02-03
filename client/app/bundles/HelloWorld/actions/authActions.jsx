@@ -26,6 +26,12 @@ export const login = (credentials) => {
   };
 };
 
+export const logout = () => {
+  delete localStorage.authToken;
+  return { type: 'LOGOUT' };
+};
+
+
 export const signUp = (user) => {
   return () => {
     axios.post('/users', user).then((res) => {

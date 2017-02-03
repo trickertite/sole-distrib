@@ -1,6 +1,11 @@
+import jwtDecode from 'jwt-decode';
+import localStorage from 'local-storage';
+
 const INITIAL_STATE = {
   isAuthenticating: false,
-  currentUser: null,
+  currentUser: localStorage.authToken
+                ? jwtDecode(localStorage.authToken)
+                : null,
   errorMessage: null,
 };
 
