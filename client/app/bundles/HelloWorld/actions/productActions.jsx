@@ -8,8 +8,8 @@ export const fetchProducts = () => ({
     headers: {
       Authorization:
       'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.' +
-      'eyJleHAiOjE0ODYxMDAyMTksInN1YiI6Mn0.' +
-      'xegMtnWq1xSTOxgZGq_WgPY31QGVAjYzRaYB6D5idP4',
+      'eyJleHAiOjE0ODYxODcwNzksInN1YiI6Mn0.' +
+      '5sNtxyK7ZWmN_FXSYAh7ZwiflLn4Emyo4YOynK15gFA',
     },
   }),
 });
