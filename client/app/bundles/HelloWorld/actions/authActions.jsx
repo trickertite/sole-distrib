@@ -1,6 +1,8 @@
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import localStorage from 'local-storage';
+import { push } from 'react-router-redux';
+import { store } from '../startup/MainApp';
 
 export const login = (credentials) => {
   return (dispatch) => {
@@ -13,6 +15,7 @@ export const login = (credentials) => {
     axios.post('/user_token', authHash).then((res) => {
       localStorage.set('authToken', res.data.jwt);
 
+      store.dispatch(push('/'));
       dispatch({
         type: 'LOGIN_SUCCESS',
         user: jwtDecode(res.data.jwt),
