@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
+import { Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
-export default class CreateProduct extends React.Component {
+export default class App extends React.Component {
   propTypes = {
     children: PropTypes.node,
   }
@@ -10,9 +12,11 @@ export default class CreateProduct extends React.Component {
       <div>
         <p>Header here</p>
 
-        <Link to="/register">register</Link>
 
         <div className="container">
+          <LinkContainer to={{ pathname: '/register' }}>
+            <Button bsStyle="primary">Register</Button>
+          </LinkContainer>
           {this.props.children}
         </div>
 

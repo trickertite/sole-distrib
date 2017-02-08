@@ -28,7 +28,7 @@ export default class SignUp extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="signUp">
         <Form
           schema={schema}
           onSubmit={this.signUp}

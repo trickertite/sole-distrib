@@ -1,3 +1,4 @@
+@javascript
 Feature: Sign up for user account
   As a User
   I want to sign up for an account
@@ -7,4 +8,3 @@ Feature: Sign up for user account
     Given I go to App Admin
     When I ask him to create an account
     Then my account should be created
-    And I should be given my credentials

@@ -15,7 +15,7 @@ export const login = (credentials) => {
     axios.post('/user_token', authHash).then((res) => {
       localStorage.set('authToken', res.data.jwt);
 
-      store.dispatch(push('/'));
+      store.dispatch(push('/products'));
       dispatch({
         type: 'LOGIN_SUCCESS',
         user: jwtDecode(res.data.jwt),
