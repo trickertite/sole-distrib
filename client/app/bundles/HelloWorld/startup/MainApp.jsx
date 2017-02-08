@@ -2,6 +2,7 @@ import React from 'react';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
+import { Notifs } from 'redux-notifications';
 import routes from '../routes';
 
 import configureStore from '../store/appStore';
@@ -19,7 +20,10 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 const mainApp = props => (
   <Provider store={store}>
-    <Router history={history} routes={routes} />
+    <div>
+      <Router history={history} routes={routes} />
+      <Notifs />
+    </div>
   </Provider>
 );
 

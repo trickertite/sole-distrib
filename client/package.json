@@ -51,9 +51,13 @@
     "react-router-redux": "^4.0.7",
     "redux": "^3.3.1",
     "redux-logger": "^2.7.4",
+    "redux-notifications": "^3.1.0",
     "redux-promise-middleware": "^4.2.0",
     "redux-thunk": "^2.2.0",
     "webpack": "^1.12.14"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "style-loader": "^0.13.1"
+  }
 }

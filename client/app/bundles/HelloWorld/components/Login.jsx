@@ -27,7 +27,7 @@ export default class LogIn extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="signIn">
         <Form
           schema={schema}
           onSubmit={this.login}

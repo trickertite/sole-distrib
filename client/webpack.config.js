@@ -51,6 +51,10 @@ const config = {
         loaders: ['babel-loader'],
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/,
+        loader: 'style!css!'
+      },
       // {
       //   test: /\.jsx?$/,
       //   exclude: /node_modules/,

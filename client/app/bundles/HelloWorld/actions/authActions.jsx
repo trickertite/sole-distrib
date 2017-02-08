@@ -1,8 +1,10 @@
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import localStorage from 'local-storage';
+import { actions as notifActions } from 'redux-notifications';
 import { push } from 'react-router-redux';
 import { store } from '../startup/MainApp';
+
 
 export const login = (credentials) => {
   return (dispatch) => {
@@ -20,6 +22,11 @@ export const login = (credentials) => {
         type: 'LOGIN_SUCCESS',
         user: jwtDecode(res.data.jwt),
       });
+      dispatch(notifActions.notifSend({
+        message: 'login successfully',
+        kind: 'success',
+        dismissAfter: 2000,
+      }));
     }).catch((res) => {
       dispatch({
         type: 'LOGIN_FAILURE',
