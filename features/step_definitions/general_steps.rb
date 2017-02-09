@@ -3,5 +3,4 @@ Then(/^I should see the message "([^"]*)"$/) do |message|
 end
 
 When(/^I go to root page$/) do
-  visit('/')
 end

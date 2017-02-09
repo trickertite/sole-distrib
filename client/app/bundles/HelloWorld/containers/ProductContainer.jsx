@@ -1,56 +1,76 @@
 // Simple example of a React "smart" component
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { actions as notifActions } from 'redux-notifications';
 import Products from '../components/Products';
 import CreateProduct from '../components/CreateProduct';
-import {fetchProducts} from '../actions/productActions';
+import { fetchProducts } from '../actions/productActions';
 // import * as actions from '../actions/helloWorldActionCreators';
 
 class ProductContainer extends React.PureComponent {
+  propTypes = {
+    fetchProducts: PropTypes.func.isRequired,
+    notifSend: PropTypes.func.isRequired,
+    products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
-      showCreateProductFormComp: false,
+      showCreateProductForm: false,
     };
-    this._onButtonClick = this._onButtonClick.bind(this);
+    this.onButtonClick = this.onButtonClick.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchProducts();
   }
 
-  _onButtonClick() {
-    this.setState({showCreateProductFormComp: !this.state.showCreateProductFormComp});
+  onButtonClick() {
+    this.setState({
+      showCreateProductForm: !this.state.showCreateProductForm,
+    });
   }
 
-  render () {
+  render() {
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-12">
             <Products products={this.props.products} />
-            <br/>
-            <button onClick={this._onButtonClick} className="btn btn-primary" data-toggle="button">Create Product</button>
-            {this.state.showCreateProductFormComp ?
-               <CreateProduct gofetch={() => this.props.fetchProducts()} /> :
-               null
+            <br />
+            <button
+              onClick={this.onButtonClick}
+              className="btn btn-primary"
+              data-toggle="button"
+            >Create Product</button>
+            {this.state.showCreateProductForm ?
+              <CreateProduct
+                gofetch={() => this.props.fetchProducts()}
+                notifSend={notif => this.props.notifSend(notif)}
+              /> : null
             }
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
 // Which part of the Redux global state does our component want to receive as props?
-const mapStateToProps = (state) => ({ products: state.products });
+const mapStateToProps = state => ({
+  products: state.productsReducer,
+});
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchProducts: () => {
-            dispatch(fetchProducts());
-        }
-    };
+  return {
+    fetchProducts: () => {
+      dispatch(fetchProducts());
+    },
+    notifSend: (notif) => {
+      dispatch(notifActions.notifSend(notif));
+    },
+  };
 };
 
 // Don't forget to actually use connect!
