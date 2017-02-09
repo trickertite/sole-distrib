@@ -1,5 +1,5 @@
 Given(/^I go to create product page$/) do
-  visit('/')
+  # visit('/')
   click_on 'Create Product'
 end
 
@@ -8,11 +8,11 @@ When(/^I create the following product$/) do |products|
 end
 
 Given(/^I have following products$/) do |table|
+  step "I go to create product page"
   table.hashes.each do |product|
-    step "I go to create product page"
     createProduct(product)
   end
-  eventually(:timeout => 10) { 
+  eventually(:timeout => 10) {
     expect(Product.count).to eql(3)
   }
 end

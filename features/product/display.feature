@@ -1,4 +1,4 @@
-@javascript
+@javascript @secure
 Feature: Display Product/Products
   As a SoleDistributor
   I want to view the product/products
@@ -6,13 +6,13 @@ Feature: Display Product/Products
 
   Scenario: view all products
     Given I have following products
-      | name      | category | price |  
-      | Huaweip8  | Mobile   | 1100  |  
-      | Iphone7s  | Mobile   | 1200  |  
-      | samsungj5 | Mobile   | 1300  |   
-    When I go to root page
+      | name      | category | price |
+      | Huaweip8  | Mobile   | 1100  |
+      | Iphone7s  | Mobile   | 1200  |
+      | samsungj5 | Mobile   | 1300  |
+    # When I go to root page
     Then I should see the following products
-      | name      | category | price |  
-      | Huaweip8  | Mobile   | 1100  |  
-      | Iphone7s  | Mobile   | 1200  |  
+      | name      | category | price |
+      | Huaweip8  | Mobile   | 1100  |
+      | Iphone7s  | Mobile   | 1200  |
       | samsungj5 | Mobile   | 1300  |
