@@ -1,6 +1,7 @@
 // Simple example of a React "smart" component
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { actions as notifActions } from 'redux-notifications';
 import Products from '../components/Products';
 import CreateProduct from '../components/CreateProduct';
 import { fetchProducts } from '../actions/productActions';
@@ -9,6 +10,7 @@ import { fetchProducts } from '../actions/productActions';
 class ProductContainer extends React.PureComponent {
   propTypes = {
     fetchProducts: PropTypes.func.isRequired,
+    notifSend: PropTypes.func.isRequired,
     products: PropTypes.arrayOf(PropTypes.object).isRequired,
   }
 
@@ -45,6 +47,7 @@ class ProductContainer extends React.PureComponent {
             {this.state.showCreateProductForm ?
               <CreateProduct
                 gofetch={() => this.props.fetchProducts()}
+                notifSend={notif => this.props.notifSend(notif)}
               /> : null
             }
           </div>
@@ -63,6 +66,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchProducts: () => {
       dispatch(fetchProducts());
+    },
+    notifSend: (notif) => {
+      dispatch(notifActions.notifSend(notif));
     },
   };
 };
