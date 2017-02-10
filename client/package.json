@@ -54,10 +54,10 @@
     "redux-notifications": "^3.1.0",
     "redux-promise-middleware": "^4.2.0",
     "redux-thunk": "^2.2.0",
-    "webpack": "^1.12.14"
-  },
-  "devDependencies": {
+    "webpack": "^1.12.14",
     "css-loader": "^0.26.1",
     "style-loader": "^0.13.1"
+  },
+  "devDependencies": {
   }
 }
