@@ -53,7 +53,7 @@ const config = {
       },
       {
         test: /\.css$/,
-        loader: 'style!css!'
+        loaders: ['style', 'css'],
       },
       // {
       //   test: /\.jsx?$/,
