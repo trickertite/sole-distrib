@@ -1,4 +1,4 @@
-@javascript
+@javascript @auth
 Feature: Sign up for user account
   As a User
   I want to sign up for an account
