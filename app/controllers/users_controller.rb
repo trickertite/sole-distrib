@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def create
     @user = User.create(user_params)
     render json: @user
