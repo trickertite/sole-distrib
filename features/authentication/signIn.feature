@@ -1,4 +1,4 @@
-@javascript
+@javascript @auth 
 Feature: Sign In for user account
   As a User
   I want to sign in through my account

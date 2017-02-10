@@ -43,9 +43,13 @@ export const logout = () => {
 
 
 export const signUp = (user) => {
-  return () => {
+  return (dispatch) => {
     axios.post('/users', user).then((res) => {
-      return res;
+      dispatch(notifActions.notifSend({
+        message: 'User Created successfully',
+        kind: 'success',
+        dismissAfter: 2000,
+      }));
     }).catch((error) => {
       return error;
     });
